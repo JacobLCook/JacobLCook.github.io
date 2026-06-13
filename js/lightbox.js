@@ -8,7 +8,27 @@
 		$prev = $overlay.find('.prev'),
 		$gallery = $(".gallery"),
 		fadeTime = 200;
+	// Randomise gallery order
+	(function () {
+		var $items = $gallery.children("li:not(.spacer)");
 
+		// Fisher-Yates shuffle
+		for (var i = $items.length - 1; i > 0; i--) {
+			var j = Math.floor(Math.random() * (i + 1));
+
+			var temp = $items[i];
+			$items[i] = $items[j];
+			$items[j] = temp;
+		}
+
+		// Re-append shuffled images
+		$.each($items, function (_, item) {
+			$gallery.append(item);
+		});
+
+		// Keep spacer elements at the end
+		$gallery.children(".spacer").appendTo($gallery);
+	})();
 	$gallery.after('<ul class="cache"></ul>');
 
 	var $cache = $(".cache");
