@@ -2,21 +2,21 @@
 # Site
 
 title: JLCook Photography
-url: "https://cosmic-hippopotamus.cloudvent.net"
+url: "https://jacoblcook.github.io/"
 baseurl:
 google_analytics_key:
 
 # Values for the jekyll-seo-tag gem (https://github.com/jekyll/jekyll-seo-tag)
 logo: /siteicon.png
-description: Photography portfolio template for Jekyll.
+description: Amateur photography for fun, mainly in the east of England.
 author:
   name:
   email:
   twitter: # twitter username without the @ symbol
 social:
-  name: Aperture Template
+  name: JLCook Photography
   links:
-    - https://github.com/CloudCannon/aperture-jekyll-template
+    
 
 # -----
 # Build
