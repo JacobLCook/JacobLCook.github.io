@@ -1,0 +1,54 @@
+---
+title: Scenes
+permalink: /scenes/
+text_width: false
+photos:
+  - image: /uploads/22.jpg
+    caption: Punting Chaos - Trinity Bridge Cambridge, UK
+  - image: /uploads/26.jpg
+    caption: Peterhouse College Cambridge, UK
+  - image: /uploads/27.jpg
+    caption: Flags - Great St Mary's Church Cambridge, UK
+  - image: /uploads/28.jpg
+    caption: Afternoon River Scene - Clare Bridge Cambridge, UK
+---
+
+<ul class="gallery">
+	{% for photo in page.photos %}
+		<li style="background-image: url('{{ site.baseurl }}{{ photo.image | resize: "800x800>" }}')"><a title="{{ photo.caption }}" href="{{ site.baseurl }}{{ photo.image }}" data-id="#{{ photo.image | slugify }}" data-caption="{{ photo.caption }}"></a></li>
+	{% endfor %}
+	<li class="spacer"></li>
+	<li class="spacer"></li>
+	<li class="spacer"></li>
+	<li class="spacer"></li>
+	<li class="spacer"></li>
+	<li class="spacer"></li>
+	<li class="spacer"></li>
+	<li class="spacer"></li>
+	<li class="spacer"></li>
+	<li class="spacer"></li>
+	<li class="spacer"></li>
+	<li class="spacer"></li>
+</ul>
+
+<div class="overlay">
+	<a href="#" class="close">&#10005;</a>
+	<a class="prev">&lsaquo;</a>
+	<a class="next">&rsaquo;</a>
+	<p class="caption"></p>
+	<img>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  if (window.location.host === "app.cloudcannon.com") {
+    $('.gallery').find("a").click(function(e) {
+      e.preventDefault();
+      return false;
+    });
+  } else {
+    var script = document.createElement("script");
+    script.src = "{{ site.baseurl }}/js/lightbox.js";
+    document.body.appendChild(script);
+  }
+</script>
