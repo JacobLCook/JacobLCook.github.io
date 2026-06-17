@@ -25,4 +25,10 @@
 			height: 100%;
 		}
 	}
+	.side-photo img {
+    max-width: 300px;   /* adjust this to control size */
+    width: 100%;
+    height: auto;
+    border-radius: 8px; /* optional */
+}
 }
