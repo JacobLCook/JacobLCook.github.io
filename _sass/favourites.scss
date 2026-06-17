@@ -8,6 +8,7 @@
     display: block;
     border-radius: 8px;
     box-shadow: 0 8px 25px rgba(0,0,0,.15);
+    transition: transform 0.3s ease;
 }
 
 .featured-title {
@@ -17,9 +18,22 @@
     font-weight: 600;
 }
 
+.featured-photo img:hover {
+    transform: scale(1.01);
+}
+
 .featured-caption {
     margin: 0;
     text-align: center;
     color: #777;
+    font-size: 1rem;
+}
+
+.featured-description {
+    max-width: 700px;
+    margin: 20px auto 0;
+    line-height: 1.7;
+    text-align: left;
+    color: #555;
     font-size: 1rem;
 }
