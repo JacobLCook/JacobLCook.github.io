@@ -62,7 +62,7 @@ photos:
 {% for photo in page.photos %}
 <div class="featured-photo">
     <a href="{{ site.baseurl }}{{ photo.image }}">
-        <img src="{{ site.baseurl }}{{ photo.image }}" alt="{{ photo.title }}">
+        <a href="{{ site.baseurl }}{{ photo.image }}" data-caption="{{ photo.title }}">
     </a>
 
     <h2 class="featured-title">{{ photo.title }}</h2>
@@ -76,22 +76,25 @@ photos:
     {% endif %}
     {% if photo.settings %}
     <div class="camera-settings">
-        {% if photo.settings.iso %}
-            <span>ISO {{ photo.settings.iso }}</span>
+        {% if photo.settings.focal_length %}
+            <span class="setting">{{ photo.settings.focal_length }}</span>
         {% endif %}
 
         {% if photo.settings.aperture %}
-            <span>{{ photo.settings.aperture }}</span>
+            <span class="setting">{{ photo.settings.aperture }}</span>
         {% endif %}
 
         {% if photo.settings.shutter %}
-            <span>{{ photo.settings.shutter }}</span>
+            <span class="setting">{{ photo.settings.shutter }}</span>
         {% endif %}
 
-        {% if photo.settings.focal_length %}
-            <span>{{ photo.settings.focal_length }}</span>
+        {% if photo.settings.iso %}
+            <span class="setting">ISO {{ photo.settings.iso }}</span>
         {% endif %}
-    </div>
+</div>
     {% endif %}
 </div>
 {% endfor %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{{ site.baseurl }}/js/lightbox.js"></script>
