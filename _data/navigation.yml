@@ -1,5 +1,7 @@
 - name: Home
   link: /
+- name: Favourites
+  links: /favourites/
 - name: Birds
   link: /birds/
 - name: Scenes
