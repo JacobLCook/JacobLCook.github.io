@@ -4,55 +4,30 @@ permalink: /favourites/
 text_width: false
 photos:
   - image: /uploads/1.JPG
+    title: The Pursuit
     caption: Swan - River Cam, UK
   - image: /uploads/2.JPG
+    title: Flyby
     caption: Grey Heron - River Cam, UK
   - image: /uploads/3.JPG
+    title: Azure
     caption: Egyptian Goose - West Stow, UK
   - image: /uploads/6.JPG
+    title: Making a splash
     caption: Cormorant - River Cam, UK
   - image: /uploads/30.jpg
+    title: Catch a lift
     caption: Mute Swan with Cygnet - Lammas Land Cambridge, UK
   - image: /uploads/32.jpg
+    title: Soaring
     caption: Kestrel - Grantchester, UK
 ---
 
-<ul class="gallery">
-	{% for photo in page.photos %}
-		<li style="background-image: url('{{ site.baseurl }}{{ photo.image | resize: "800x800>" }}')"><a title="{{ photo.caption }}" href="{{ site.baseurl }}{{ photo.image }}" data-id="#{{ photo.image | slugify }}" data-caption="{{ photo.caption }}"></a></li>
-	{% endfor %}
-	<li class="spacer"></li>
-	<li class="spacer"></li>
-	<li class="spacer"></li>
-	<li class="spacer"></li>
-	<li class="spacer"></li>
-	<li class="spacer"></li>
-	<li class="spacer"></li>
-	<li class="spacer"></li>
-	<li class="spacer"></li>
-	<li class="spacer"></li>
-	<li class="spacer"></li>
-	<li class="spacer"></li>
-</ul>
-
-<div class="overlay">
-	<a href="#" class="close">&#10005;</a>
-	<a class="prev">&lsaquo;</a>
-	<a class="next">&rsaquo;</a>
-	<p class="caption"></p>
-	<img>
+{% for photo in page.photos %}
+<div class="featured-photo">
+    <a href="{{ site.baseurl }}{{ photo.image }}">
+        <img src="{{ site.baseurl }}{{ photo.image }}" alt="{{ photo.caption }}">
+    </a>
+    <p class="caption">{{ photo.caption }}</p>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-  if (window.location.host === "app.cloudcannon.com") {
-    $('.gallery').find("a").click(function(e) {
-      e.preventDefault();
-      return false;
-    });
-  } else {
-    var script = document.createElement("script");
-    script.src = "{{ site.baseurl }}/js/lightbox.js";
-    document.body.appendChild(script);
-  }
-</script>
+{% endfor %}

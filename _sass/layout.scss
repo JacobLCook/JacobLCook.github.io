@@ -73,3 +73,22 @@ header h1 a {
 	margin: 0;
 	z-index: 999;
 }
+
+.featured-photo {
+    max-width: 1200;
+    margin: 70px auto;
+}
+
+.featured-photo img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.15);
+}
+
+.featured-photo .caption {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 1.1rem;
+    color: #666;
+}
