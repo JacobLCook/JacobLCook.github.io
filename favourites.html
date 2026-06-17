@@ -7,26 +7,56 @@ photos:
     title: The Pursuit
     caption: Swan - River Cam, UK
     description: Noticed this swan swimming quickly away from an oncoming boat which appears quite nicely slightly out of focus in the background.
+    settings:
+    iso: 640
+    aperture: f/8
+    shutter: 1/2000s
+    focal_length: 400mm
   - image: /uploads/2.JPG
     title: Flyby
     caption: Grey Heron - River Cam, UK
     description: Managed to get a fairly clean shot on this heron as it surprised us flying past. Only managed one shot and with manual focus so very happy with how it turned out.
+    settings:
+    iso: 640
+    aperture: f/8
+    shutter: 1/2000s
+    focal_length: 400mm
   - image: /uploads/3.JPG
     title: Celadon
     caption: Egyptian Goose - West Stow, UK
     description: The sun shining on the water and some sort of algae in the water creates this wonderful shimmering blue and green effect that contrasts nicely against the more matte and muted body of the goose.
+    settings:
+    iso: 640
+    aperture: f/8
+    shutter: 1/2000s
+    focal_length: 400mm
   - image: /uploads/6.JPG
     title: Making a splash
     caption: Cormorant - River Cam, UK
     description: Followed this cormorant down the Cam for a while until it surfaced long enough for a good shot, with a lovely little splash.
+    settings:
+    iso: 640
+    aperture: f/8
+    shutter: 1/2000s
+    focal_length: 400mm
   - image: /uploads/30.jpg
     title: Catching a lift
     caption: Mute Swan with Cygnet - Lammas Land Cambridge, UK
     description: An adorable scene of a cygnet catching a ride. The sunlight filtering through the plants combined with the parent swan's head being slightly obscured give a nice emphasis on the cygnet as the image focus.
+    settings:
+    iso: 640
+    aperture: f/8
+    shutter: 1/2000s
+    focal_length: 400mm
   - image: /uploads/32.jpg
     title: Soaring
     caption: Kestrel - Grantchester, UK
     description: This kestrel often hunts in around Grantchester, here I was lucky enough to catch it in flight. Although the image isn't especially sharp, I quite like how the clouds and azure sky texture the background.
+    settings:
+    iso: 640
+    aperture: f/8
+    shutter: 1/2000s
+    focal_length: 400mm
 ---
 
 {% for photo in page.photos %}
@@ -43,6 +73,25 @@ photos:
         <p class="featured-description">
             {{ photo.description }}
         </p>
+    {% endif %}
+    {% if photo.settings %}
+    <div class="camera-settings">
+        {% if photo.settings.iso %}
+            <span>ISO {{ photo.settings.iso }}</span>
+        {% endif %}
+
+        {% if photo.settings.aperture %}
+            <span>{{ photo.settings.aperture }}</span>
+        {% endif %}
+
+        {% if photo.settings.shutter %}
+            <span>{{ photo.settings.shutter }}</span>
+        {% endif %}
+
+        {% if photo.settings.focal_length %}
+            <span>{{ photo.settings.focal_length }}</span>
+        {% endif %}
+    </div>
     {% endif %}
 </div>
 {% endfor %}
