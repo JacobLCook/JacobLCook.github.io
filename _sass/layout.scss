@@ -75,20 +75,27 @@ header h1 a {
 }
 
 .featured-photo {
-    max-width: 1200;
-    margin: 70px auto;
+    max-width: 1000px;
+    margin: 80px auto;
 }
 
 .featured-photo img {
     width: 100%;
     display: block;
     border-radius: 8px;
-    box-shadow: 0 8px 25px rgba(0,0,0,.15);
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
 }
 
-.featured-photo .caption {
+.featured-title {
+    margin: 20px 0 5px;
     text-align: center;
-    margin-top: 18px;
-    font-size: 1.1rem;
-    color: #666;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.featured-location {
+    margin: 0;
+    text-align: center;
+    color: #777;
+    font-size: 1rem;
 }

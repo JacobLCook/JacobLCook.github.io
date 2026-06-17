@@ -26,8 +26,11 @@ photos:
 {% for photo in page.photos %}
 <div class="featured-photo">
     <a href="{{ site.baseurl }}{{ photo.image }}">
-        <img src="{{ site.baseurl }}{{ photo.image }}" alt="{{ photo.caption }}">
+        <img src="{{ site.baseurl }}{{ photo.image }}" alt="{{ photo.title }}">
     </a>
-    <p class="caption">{{ photo.caption }}</p>
+
+    <h2 class="featured-title">{{ photo.title }}</h2>
+
+    <p class="featured-location">{{ photo.caption }}</p>
 </div>
 {% endfor %}
