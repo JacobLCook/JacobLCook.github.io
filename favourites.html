@@ -61,38 +61,35 @@ photos:
 
 {% for photo in page.photos %}
 <div class="featured-photo">
+
     <a href="{{ site.baseurl }}{{ photo.image }}">
-        <a href="{{ site.baseurl }}{{ photo.image }}" data-caption="{{ photo.title }}">
     </a>
 
     <h2 class="featured-title">{{ photo.title }}</h2>
-
     <p class="featured-location">{{ photo.caption }}</p>
 
     {% if photo.description %}
-        <p class="featured-description">
-            {{ photo.description }}
-        </p>
+        <p class="featured-description">{{ photo.description }}</p>
     {% endif %}
     {% if photo.settings %}
     <div class="camera-settings">
-        {% if photo.settings.focal_length %}
-            <span class="setting">{{ photo.settings.focal_length }}</span>
-        {% endif %}
+      {% if photo.settings.focal_length %}
+          <span class="setting">{{ photo.settings.focal_length }}</span>
+      {% endif %}
 
-        {% if photo.settings.aperture %}
-            <span class="setting">{{ photo.settings.aperture }}</span>
-        {% endif %}
+      {% if photo.settings.aperture %}
+          <span class="setting">{{ photo.settings.aperture }}</span>
+      {% endif %}
 
-        {% if photo.settings.shutter %}
-            <span class="setting">{{ photo.settings.shutter }}</span>
-        {% endif %}
+      {% if photo.settings.shutter %}
+          <span class="setting">{{ photo.settings.shutter }}</span>
+      {% endif %}
 
-        {% if photo.settings.iso %}
-            <span class="setting">ISO {{ photo.settings.iso }}</span>
-        {% endif %}
-</div>
-    {% endif %}
+      {% if photo.settings.iso %}
+          <span class="setting">ISO {{ photo.settings.iso }}</span>
+      {% endif %}
+  </div>
+  {% endif %}
 </div>
 {% endfor %}
 
