@@ -4,12 +4,12 @@ body_class: home
 # Photos used on the home page — swap any of these for another path in /photos/
 hero: /photos/birds/kingfisher-perched.jpg
 birds_cover: /photos/birds/cormorant-splash.jpg
-mammals_cover: /photos/mammals/fox-at-kings.jpg
+animals_cover: /photos/animals/fox-at-kings.jpg
 scenery_cover: /photos/scenery/clare-bridge-punts.jpg
 ---
 
 {% assign birds = site.static_files | where_exp: "f", "f.path contains '/photos/birds/'" %}
-{% assign mammals = site.static_files | where_exp: "f", "f.path contains '/photos/mammals/'" %}
+{% assign animals = site.static_files | where_exp: "f", "f.path contains '/photos/animals/'" %}
 {% assign scenery = site.static_files | where_exp: "f", "f.path contains '/photos/scenery/'" %}
 
 <section class="hero">
@@ -33,11 +33,11 @@ scenery_cover: /photos/scenery/clare-bridge-punts.jpg
 				<span class="collection__count">{{ birds.size }} photographs</span>
 			</span>
 		</a>
-		<a class="collection" href="{{ site.baseurl }}/mammals/">
-			<img src="{{ site.baseurl }}{{ page.mammals_cover }}" alt="Fox looking towards the camera" loading="lazy">
+		<a class="collection" href="{{ site.baseurl }}/animals/">
+			<img src="{{ site.baseurl }}{{ page.animals_cover }}" alt="Fox looking towards the camera" loading="lazy">
 			<span class="collection__label">
-				<span class="collection__title">Mammals</span>
-				<span class="collection__count">{{ mammals.size }} photographs</span>
+				<span class="collection__title">Animals</span>
+				<span class="collection__count">{{ animals.size }} photographs</span>
 			</span>
 		</a>
 		<a class="collection" href="{{ site.baseurl }}/scenery/">

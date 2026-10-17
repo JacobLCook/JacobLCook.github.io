@@ -9,7 +9,7 @@ Drop the image into the right folder and push. That's it.
 | Folder | Appears on |
 |---|---|
 | `photos/birds/` | Birds page |
-| `photos/mammals/` | Mammals page |
+| `photos/animals/` | Animals page |
 | `photos/scenery/` | Scenery page |
 
 - Name files descriptively with dashes, e.g. `grey-heron-flight.jpg`. The name is used as the image's alt text ("Grey heron flight"), and photos are shown in filename order.
