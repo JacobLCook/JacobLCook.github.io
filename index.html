@@ -2,7 +2,7 @@
 title: Home
 body_class: home
 # Photos used on the home page — swap any of these for another path in /photos/
-hero: /photos/birds/kingfisher-perched.jpg
+hero: /photos/birds/grey-heron-close-up.jpg
 birds_cover: /photos/birds/cormorant-splash.jpg
 animals_cover: /photos/animals/fox-at-kings.jpg
 scenery_cover: /photos/scenery/clare-bridge-punts.jpg
@@ -13,7 +13,7 @@ scenery_cover: /photos/scenery/clare-bridge-punts.jpg
 {% assign scenery = site.static_files | where_exp: "f", "f.path contains '/photos/scenery/'" %}
 
 <section class="hero">
-	<img class="hero__img" src="{{ site.baseurl }}{{ page.hero }}" alt="Kingfisher perched on a branch" fetchpriority="high">
+	<img class="hero__img" src="{{ site.baseurl }}{{ page.hero }}" alt="Close-up of a grey heron in long grass" fetchpriority="high">
 	<div class="hero__text container">
 		<p class="eyebrow">Wildlife &amp; landscape</p>
 		<h1>Quiet moments along the&nbsp;Cam</h1>
