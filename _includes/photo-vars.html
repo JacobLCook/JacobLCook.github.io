@@ -1,3 +1,0 @@
-{% comment %}
-	Sets photo_src and photo_caption ("Subject - Location") for include.photo.
-{% endcomment %}{% assign photo_src = "/uploads/" | append: include.photo.image %}{% if include.photo.location %}{% assign photo_caption = include.photo.subject | append: " - " | append: include.photo.location %}{% else %}{% assign photo_caption = include.photo.subject %}{% endif %}

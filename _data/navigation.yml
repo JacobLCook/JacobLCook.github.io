@@ -1,10 +1,8 @@
-- name: Home
-  link: /
-- name: Favourites
-  link: /favourites/
 - name: Birds
   link: /birds/
-- name: Scenes
-  link: /scenes/
+- name: Scenery
+  link: /scenery/
+- name: Favourites
+  link: /favourites/
 - name: About
-  link: /about/ 
+  link: /about/

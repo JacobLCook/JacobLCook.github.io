@@ -1,10 +1,18 @@
-// Breakpoints
-$tablet: "(min-width: 450px)";
-$mid-point: "(min-width: 750px)";
-$desktop: "(min-width: 900px)";
+// Colours
+$bg: #f6f4ef;
+$ink: #1c1b19;
+$muted: #6f6b63;
+$rule: #e2ddd2;
+$placeholder: #e9e5dc;
+$accent: #3d5a47;
 
-// Colors
-$background: #101010;
-$color: #fefefe;
-$link-color: #7bc6ff;
-$offset: 30px;
+// Type
+$serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+$sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+// Breakpoints
+$sm: "(min-width: 640px)";
+$md: "(min-width: 900px)";
+$lg: "(min-width: 1100px)";
+
+$gutter: 1.25rem;

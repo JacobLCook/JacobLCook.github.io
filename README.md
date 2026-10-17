@@ -1,54 +1,34 @@
-# Aperture
+# JLCook Photography
 
-Aperture template for Jekyll. Browse through a [live demo](https://cosmic-hippopotamus.cloudvent.net/).
+Source for [jacoblcook.github.io](https://jacoblcook.github.io/), built with Jekyll on GitHub Pages.
 
-![Aperture template screenshot](images/_screenshot.png)
+## Adding photos
 
-Aperture was made by [CloudCannon](http://cloudcannon.com/), the Cloud CMS for Jekyll.
-Find more templates and themes at [CloudCannon Academy](https://learn.cloudcannon.com/jekyll-templates/).
+Drop the image into the right folder and push. That's it.
 
-Learn Jekyll with step-by-step tutorials and videos at [CloudCannon Academy](https://learn.cloudcannon.com/).
+| Folder | Appears on |
+|---|---|
+| `photos/birds/` | Birds page |
+| `photos/scenery/` | Scenery page |
 
-[![Deploy to CloudCannon](https://buttons.cloudcannon.com/deploy.svg)](https://app.cloudcannon.com/register#sites/connect/github/CloudCannon/aperture-jekyll-template)
+- Name files descriptively with dashes, e.g. `grey-heron-flight.jpg`. The name is used as the image's alt text ("Grey heron flight"), and photos are shown in filename order.
+- Filenames are case-sensitive on the live site, so stick to lowercase `.jpg`.
 
-## Features
+## Favourites
 
-* Photo grid
-* Thumbnails
-* Captions
-* About page
-* Contact page
+Edit `_data/favourites.yml`. Each entry points at a photo already in `photos/` and adds a title, caption, description and camera settings.
 
-## Setup
+## Home page
 
-1. Add your site and author details in `_config.yml`.
-2. Get a workflow going to see your site's output (with [CloudCannon](https://app.cloudcannon.com/) or Jekyll locally).
+The hero image and the two collection covers are set at the top of `index.html`.
 
-## Develop
+## Archive
 
-Aperture was built with [Jekyll](http://jekyllrb.com/) version 3.7.2, but should support newer versions as well.
+`_archive/` holds older photos that aren't on the site. Jekyll ignores folders starting with `_`, so nothing in there is published. Move a file into `photos/birds/` or `photos/scenery/` to bring it back.
 
-Install the dependencies with [Bundler](http://bundler.io/):
+## Running locally
 
-~~~bash
-$ bundle install
-~~~
-
-Run `jekyll` commands through Bundler to ensure you're using the right versions:
-
-~~~bash
-$ bundle exec jekyll serve
-~~~
-
-## Editing
-
-Aperture is already optimised for adding, updating and removing photos and navigation in CloudCannon.
-
-### Navigation
-
-* Exposed as a data file to give clients better access.
-* Set in the *Data* / *Navigation* section.
-
-### Photo Gallery
-
-* Populated using front matter array in `index.html`.
+```bash
+bundle install
+bundle exec jekyll serve
+```

@@ -1,50 +1,32 @@
 ---
 title: Favourites
 permalink: /favourites/
-text_width: false
 ---
 
-{% for photo in site.data.photos %}
-{% if photo.tags contains "favourites" %}
-{% include photo-vars.html photo=photo %}
-<div class="featured-photo">
+<header class="page-intro container">
+	<h1>Favourites</h1>
+	<p>A few shots I'm especially pleased with, and how they came about.</p>
+</header>
 
-    <a href="{{ site.baseurl }}{{ photo_src }}" data-caption="{{ photo.title | default: photo.subject }}">
-        <img src="{{ site.baseurl }}{{ photo_src }}" alt="{{ photo.title | default: photo.subject }}">
-    </a>
-
-    <h2 class="featured-title">{{ photo.title | default: photo.subject }}</h2>
-    <p class="featured-caption">{{ photo_caption }}</p>
-
-    {% if photo.description %}
-        <p class="featured-description">{{ photo.description }}</p>
-    {% endif %}
-
-    {% if photo.settings %}
-    <div class="camera-settings">
-
-        {% if photo.settings.focal_length %}
-            <span class="setting">{{ photo.settings.focal_length }}</span>
-        {% endif %}
-
-        {% if photo.settings.aperture %}
-            <span class="setting">{{ photo.settings.aperture }}</span>
-        {% endif %}
-
-        {% if photo.settings.shutter %}
-            <span class="setting">{{ photo.settings.shutter }}</span>
-        {% endif %}
-
-        {% if photo.settings.iso %}
-            <span class="setting">ISO {{ photo.settings.iso }}</span>
-        {% endif %}
-
-    </div>
-    {% endif %}
-
+<div class="container favourites">
+	{% for photo in site.data.favourites %}
+	<article class="favourite">
+		<a class="favourite__image" href="{{ site.baseurl }}{{ photo.image }}" data-lightbox="favourites">
+			<img src="{{ site.baseurl }}{{ photo.image }}" alt="{{ photo.title }}" loading="lazy" decoding="async">
+		</a>
+		<div class="favourite__text">
+			<p class="eyebrow">{{ photo.caption }}</p>
+			<h2>{{ photo.title }}</h2>
+			{% if photo.description %}<p>{{ photo.description }}</p>{% endif %}
+			{% if photo.settings %}
+			<dl class="settings">
+				{% if photo.settings.focal_length %}<div><dt>Focal length</dt><dd>{{ photo.settings.focal_length }}</dd></div>{% endif %}
+				{% if photo.settings.aperture %}<div><dt>Aperture</dt><dd>{{ photo.settings.aperture }}</dd></div>{% endif %}
+				{% if photo.settings.shutter %}<div><dt>Shutter</dt><dd>{{ photo.settings.shutter }}</dd></div>{% endif %}
+				{% if photo.settings.iso %}<div><dt>ISO</dt><dd>{{ photo.settings.iso }}</dd></div>{% endif %}
+			</dl>
+			{% endif %}
+		</div>
+	</article>
+	{% endfor %}
 </div>
-{% endif %}
-{% endfor %}
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="{{ site.baseurl }}/js/lightbox.js"></script>

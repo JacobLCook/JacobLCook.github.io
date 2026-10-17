@@ -31,13 +31,7 @@ defaults:
       path: ""
     values:
       layout: "default"
-      text_width: true
-      image: /uploads/1.jpg
-  -
-    scope:
-      path: "index.html"
-    values:
-      text_width: false
+      image: /photos/birds/heron-in-flight.jpg
 
 plugins:
   - jekyll-sitemap

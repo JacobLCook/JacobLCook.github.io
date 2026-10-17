@@ -1,57 +1,129 @@
-.overlay {
+.lightbox {
 	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: -1px;
-	left: 0;
-	z-index: 999;
-	display: none;
-	background: #000;
+	inset: 0;
+	z-index: 100;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(14, 14, 13, 0.97);
+	animation: lightbox-in 0.2s ease;
 
-	.close {
-		position: absolute;
-		top: $offset;
-		right: $offset;
-		font-size: 1.5em;
+	&[hidden] {
+		display: none;
 	}
+}
 
-	.close, .next, .prev {
+@keyframes lightbox-in {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+.lightbox__figure {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4rem 1rem;
+
+	@media #{$sm} {
+		padding: 3.5rem 5.5rem;
+	}
+}
+
+.lightbox__img {
+	max-width: 100%;
+	max-height: 100%;
+	width: auto;
+	height: auto;
+	object-fit: contain;
+	opacity: 0;
+	transition: opacity 0.25s ease;
+
+	&.is-loaded {
+		opacity: 1;
+	}
+}
+
+.lightbox__btn {
+	position: absolute;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 3rem;
+	height: 3rem;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: transparent;
+	color: rgba(255, 255, 255, 0.75);
+	cursor: pointer;
+	transition: color 0.2s ease, background 0.2s ease;
+
+	&:hover {
 		color: #fff;
-		text-decoration: none;
-		text-shadow: 0px 1px 1px #000;
-		z-index: 9999;
+		background: rgba(255, 255, 255, 0.08);
 	}
 
-	.prev, .next {
-		position: absolute;
-		top: 50%;
-		font-size: 3.5em;
-		text-align: center;
+	&[hidden] {
 		display: none;
 	}
 
-	.prev {
-		left: $offset;
-	}
-
-	.next {
-		right: $offset;
-	}
-
-	img {
-		margin: 0 auto;
-		display: block;
-		max-height: 100%;
+	svg {
+		width: 1.5rem;
+		height: 1.5rem;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.5;
+		stroke-linecap: round;
+		stroke-linejoin: round;
 	}
 }
 
-.cache {
-	display: none;
+.lightbox__close {
+	top: 0.75rem;
+	right: 0.75rem;
 }
 
-body.overlay-active {
+.lightbox__prev,
+.lightbox__next {
+	top: 50%;
+	margin-top: -1.5rem;
+}
+
+.lightbox__prev {
+	left: 0.75rem;
+}
+
+.lightbox__next {
+	right: 0.75rem;
+}
+
+@media (max-width: 639px) {
+	// On phones the arrows sit at the bottom so they don't cover the photo
+	.lightbox__prev,
+	.lightbox__next {
+		top: auto;
+		bottom: 0.5rem;
+		margin-top: 0;
+	}
+}
+
+.lightbox__count {
+	position: absolute;
+	bottom: 1.25rem;
+	left: 0;
+	right: 0;
+	margin: 0;
+	text-align: center;
+	font-size: 0.72rem;
+	letter-spacing: 0.16em;
+	color: rgba(255, 255, 255, 0.6);
+	pointer-events: none;
+}
+
+body.lightbox-open {
 	overflow: hidden;
-	.overlay {
-		display: block;
-	}
 }

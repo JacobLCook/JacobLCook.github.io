@@ -1,126 +1,81 @@
-(function() {
-	var $overlay = $(".overlay"),
-		$overlayImage = $overlay.find("img"),
-		$caption = $overlay.find('.caption'),
-		$body = $("body"),
-		$close = $overlay.find('.close'),
-		$next = $overlay.find('.next'),
-		$prev = $overlay.find('.prev'),
-		$gallery = $(".gallery"),
-		fadeTime = 200;
-	// Randomise gallery order
-	(function () {
-		var $items = $gallery.children("li:not(.spacer)");
+// Full-screen photo viewer for any link with a data-lightbox="<group>" attribute.
+// Arrow keys / swipe move within the group, Esc or a click on the backdrop closes.
+(function () {
+	var box = document.getElementById("lightbox");
+	if (!box) return;
 
-		// Fisher-Yates shuffle
-		for (var i = $items.length - 1; i > 0; i--) {
-			var j = Math.floor(Math.random() * (i + 1));
+	var img = box.querySelector(".lightbox__img"),
+		count = box.querySelector(".lightbox__count"),
+		prevBtn = box.querySelector(".lightbox__prev"),
+		nextBtn = box.querySelector(".lightbox__next"),
+		closeBtn = box.querySelector(".lightbox__close"),
+		items = [],
+		index = 0,
+		opener = null;
 
-			var temp = $items[i];
-			$items[i] = $items[j];
-			$items[j] = temp;
-		}
+	function show(i) {
+		index = (i + items.length) % items.length;
+		var link = items[index],
+			thumb = link.querySelector("img");
+		img.classList.remove("is-loaded");
+		img.onload = function () { img.classList.add("is-loaded"); };
+		img.src = link.href;
+		img.alt = thumb ? thumb.alt : "";
+		count.textContent = items.length > 1 ? (index + 1) + " / " + items.length : "";
+		prevBtn.hidden = nextBtn.hidden = items.length < 2;
 
-		// Re-append shuffled images
-		$.each($items, function (_, item) {
-			$gallery.append(item);
+		// Preload neighbours so next/prev feel instant
+		[index - 1, index + 1].forEach(function (n) {
+			var link = items[(n + items.length) % items.length];
+			if (link) new Image().src = link.href;
 		});
+	}
 
-		// Keep spacer elements at the end
-		$gallery.children(".spacer").appendTo($gallery);
-	})();
-	$gallery.after('<ul class="cache"></ul>');
+	function open(link) {
+		items = Array.prototype.slice.call(
+			document.querySelectorAll('[data-lightbox="' + link.dataset.lightbox + '"]')
+		);
+		opener = link;
+		box.hidden = false;
+		document.body.classList.add("lightbox-open");
+		show(items.indexOf(link));
+		closeBtn.focus();
+	}
 
-	var $cache = $(".cache");
+	function close() {
+		box.hidden = true;
+		document.body.classList.remove("lightbox-open");
+		img.removeAttribute("src");
+		if (opener) opener.focus();
+	}
 
-	var addToCache = function(src) {
-		if ($cache.find('img[src="' + src + '"]').length < 1) {
-			$cache.append('<li><img src="' + src + '"></li>');
-		}
-	},
-
-	changeEvent = function() {
-		var $this = $gallery.find('a[data-id="' + window.location.hash + '"]');
-		if ($this.length == 1) {
-			var index = $this.parent().index();
-			$overlayImage.fadeOut(fadeTime, function() {
-				$overlayImage.attr("src", $this.attr("href")).fadeIn(fadeTime);
-				$caption.html($this.attr("data-caption"));
-			});
-			$body.addClass("overlay-active");
-
-
-
-			if (index > 0) {
-				var $prevEl = $gallery.children().eq(index - 1).find('a');
-				$prev.attr('href', $prevEl.attr('data-id')).show();
-				addToCache($prevEl.attr('href'));
-			} else {
-				$prev.hide();
-			}
-
-			if (index < $gallery.find("a:last").parent().index()) {
-				var $nextEl = $gallery.children().eq(index + 1).find('a');
-				$next.attr('href', $nextEl.attr('data-id')).show();
-				addToCache($nextEl.attr('href'));
-			} else {
-				$next.hide();
-			}
-
-			addToCache($this.attr("href"));
-		} else {
-			$body.removeClass("overlay-active");
-			$overlayImage.attr("src", "");
-		}
-	},
-
-	changeHash = function(hash) {
-		history.replaceState(undefined, undefined, hash);
-		changeEvent();
-	};
-
-	$close.click(function() {
-		changeHash("#");
-	});
-
-	$prev.click(function() {
-		changeHash($prev.attr('href'));
-		return false;
-	});
-
-	$next.click(function() {
-		changeHash($next.attr('href'));
-		return false;
-	});
-
-	$gallery.find("a").click(function(e){
-		var $this = $(this);
-		changeHash($this.attr('data-id'));
-		return false;
-	});
-
-	$(document).keyup(function(e) {
-		 switch(e.which) {
-				case 37: // left
-				if (($prev).is(':visible')) {
-					changeHash($prev.attr("href"));
-				}
-				break;
-
-				case 39: // right
-				if (($next).is(':visible')) {
-					changeHash($next.attr("href"));
-				}
-				break;
-
-				case 27: // escape
-				 changeHash("#");
-				break;
-
-				default: return; // exit this handler for other keys
-		}
+	document.addEventListener("click", function (e) {
+		var link = e.target.closest("[data-lightbox]");
+		if (!link || e.metaKey || e.ctrlKey || e.shiftKey) return;
 		e.preventDefault();
+		open(link);
 	});
 
-	changeEvent();
+	prevBtn.addEventListener("click", function () { show(index - 1); });
+	nextBtn.addEventListener("click", function () { show(index + 1); });
+	closeBtn.addEventListener("click", close);
+	box.addEventListener("click", function (e) {
+		if (e.target === box || e.target.classList.contains("lightbox__figure")) close();
+	});
+
+	document.addEventListener("keydown", function (e) {
+		if (box.hidden) return;
+		if (e.key === "Escape") close();
+		else if (e.key === "ArrowLeft") show(index - 1);
+		else if (e.key === "ArrowRight") show(index + 1);
+	});
+
+	var touchX = null;
+	box.addEventListener("touchstart", function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+	box.addEventListener("touchend", function (e) {
+		if (touchX === null) return;
+		var dx = e.changedTouches[0].clientX - touchX;
+		if (Math.abs(dx) > 50) show(index + (dx < 0 ? 1 : -1));
+		touchX = null;
+	});
 })();

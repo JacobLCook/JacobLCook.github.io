@@ -1,11 +1,5 @@
-<nav>
-	<a class="editor-link btn" href="cloudcannon:collections/_data/navigation.yml" class="btn"><strong>&#9998;</strong> Edit navigation</a>
+<nav class="site-nav" aria-label="Main">
 	{% for link in site.data.navigation %}
-	{% assign class = "" %}
-
-		{% if link.link == page.url %}
-			{% assign class = class | append: " active" %}
-		{% endif %}
-		<a href="{% include relative-src.html src=link.link %}" class="{{ class }}">{{ link.name }}</a>
+		<a href="{% include relative-src.html src=link.link %}"{% if link.link == page.url %} class="is-active" aria-current="page"{% endif %}>{{ link.name }}</a>
 	{% endfor %}
 </nav>

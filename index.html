@@ -1,5 +1,57 @@
 ---
 title: Home
+body_class: home
+# Photos used on the home page — swap any of these for another path in /photos/
+hero: /photos/birds/heron-in-flight.jpg
+birds_cover: /photos/birds/cormorant-splash.jpg
+scenery_cover: /photos/scenery/clare-bridge-punts.jpg
 ---
 
-{% include gallery.html %}
+{% assign birds = site.static_files | where_exp: "f", "f.path contains '/photos/birds/'" %}
+{% assign scenery = site.static_files | where_exp: "f", "f.path contains '/photos/scenery/'" %}
+
+<section class="hero">
+	<img class="hero__img" src="{{ site.baseurl }}{{ page.hero }}" alt="Grey heron in flight" fetchpriority="high">
+	<div class="hero__text container">
+		<p class="eyebrow">Wildlife &amp; landscape</p>
+		<h1>Quiet moments along the&nbsp;Cam</h1>
+		<p class="hero__lede">Birds, rivers and old stone around Cambridge and the East of England.</p>
+	</div>
+</section>
+
+<section class="section container">
+	<div class="section__head">
+		<h2>Collections</h2>
+	</div>
+	<div class="collections">
+		<a class="collection" href="{{ site.baseurl }}/birds/">
+			<img src="{{ site.baseurl }}{{ page.birds_cover }}" alt="Cormorant surfacing with a splash" loading="lazy">
+			<span class="collection__label">
+				<span class="collection__title">Birds</span>
+				<span class="collection__count">{{ birds.size }} photographs</span>
+			</span>
+		</a>
+		<a class="collection" href="{{ site.baseurl }}/scenery/">
+			<img src="{{ site.baseurl }}{{ page.scenery_cover }}" alt="Punts passing under Clare Bridge" loading="lazy">
+			<span class="collection__label">
+				<span class="collection__title">Scenery</span>
+				<span class="collection__count">{{ scenery.size }} photographs</span>
+			</span>
+		</a>
+	</div>
+</section>
+
+<section class="section container">
+	<div class="section__head">
+		<h2>Favourites</h2>
+		<a class="text-link" href="{{ site.baseurl }}/favourites/">See the stories behind them &rarr;</a>
+	</div>
+	<div class="fav-strip">
+		{% for photo in site.data.favourites limit: 3 %}
+			<a class="fav-strip__item" href="{{ site.baseurl }}/favourites/">
+				<img src="{{ site.baseurl }}{{ photo.image }}" alt="{{ photo.title }}" loading="lazy">
+				<span class="fav-strip__title">{{ photo.title }}</span>
+			</a>
+		{% endfor %}
+	</div>
+</section>
