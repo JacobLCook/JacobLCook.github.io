@@ -1,5 +1,7 @@
 - name: Birds
   link: /birds/
+- name: Mammals
+  link: /mammals/
 - name: Scenery
   link: /scenery/
 - name: Favourites

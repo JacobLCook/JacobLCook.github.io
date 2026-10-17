@@ -72,14 +72,14 @@
 	gap: $gutter;
 
 	@media #{$sm} {
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: repeat(3, 1fr);
 	}
 }
 
 .collection {
 	position: relative;
 	display: block;
-	aspect-ratio: 4 / 3;
+	aspect-ratio: 4 / 5;
 	overflow: hidden;
 	background: $placeholder;
 	color: #fff;

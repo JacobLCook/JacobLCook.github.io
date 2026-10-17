@@ -31,7 +31,7 @@ defaults:
       path: ""
     values:
       layout: "default"
-      image: /photos/birds/heron-in-flight.jpg
+      image: /photos/birds/kingfisher-perched.jpg
 
 plugins:
   - jekyll-sitemap
