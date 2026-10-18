@@ -4,12 +4,14 @@ body_class: home
 # Photos used on the home page — swap any of these for another path in /photos/
 hero: /photos/birds/grey-heron-close-up.jpg
 birds_cover: /photos/birds/cormorant-splash.jpg
+birds_of_prey_cover: /photos/birds-of-prey/kestrel-in-tree.jpg
 animals_cover: /photos/animals/fox-at-kings.jpg
 scenery_cover: /photos/scenery/clare-bridge-punts.jpg
 ---
 
 {% assign birds = site.static_files | where_exp: "f", "f.path contains '/photos/birds/'" %}
-{% assign animals = site.static_files | where_exp: "f", "f.path contains '/photos/animals/'" %}
+{% assign birds_of_prey = site.static_files | where_exp: "f", "f.path contains '/photos/birds-of-prey/'" %}
+{% assign animals =site.static_files | where_exp: "f", "f.path contains '/photos/animals/'" %}
 {% assign scenery = site.static_files | where_exp: "f", "f.path contains '/photos/scenery/'" %}
 
 <section class="hero">
@@ -31,6 +33,13 @@ scenery_cover: /photos/scenery/clare-bridge-punts.jpg
 			<span class="collection__label">
 				<span class="collection__title">Birds</span>
 				<span class="collection__count">{{ birds.size }} photographs</span>
+			</span>
+		</a>
+		<a class="collection" href="{{ site.baseurl }}/birds-of-prey/">
+			<img src="{{ site.baseurl }}{{ page.birds_of_prey_cover }}" alt="Kestrel perched in a tree" loading="lazy">
+			<span class="collection__label">
+				<span class="collection__title">Birds of Prey</span>
+				<span class="collection__count">{{ birds_of_prey.size }} photographs</span>
 			</span>
 		</a>
 		<a class="collection" href="{{ site.baseurl }}/animals/">

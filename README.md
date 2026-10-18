@@ -9,6 +9,7 @@ Drop the image into the right folder and push. That's it.
 | Folder | Appears on |
 |---|---|
 | `photos/birds/` | Birds page |
+| `photos/birds-of-prey/` | Birds of Prey page |
 | `photos/animals/` | Animals page |
 | `photos/scenery/` | Scenery page |
 
